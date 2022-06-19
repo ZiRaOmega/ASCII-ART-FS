@@ -5,13 +5,17 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
 	if len(os.Args) > 1 {
 		Fonts := os.Args[2]
 		inputtext := os.Args[1]
-		fmt.Println(Show_ascii(Get_ascii_char(inputtext, Fonts)))
+		Slice_inputtext := strings.Split(inputtext, "\\n")
+		for _, element := range Slice_inputtext {
+			fmt.Println(Show_ascii(Get_ascii_char(element, Fonts)))
+		}
 	}
 }
 
