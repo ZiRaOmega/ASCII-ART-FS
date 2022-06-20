@@ -8,14 +8,27 @@ import (
 	"strings"
 )
 
+func perror() {
+	fmt.Println("------------------------------------------------------------------------------------------------")
+	fmt.Println("Usage: go run . " + "\033[32m" + "[STRING] " + "\033[34m" + "[BANNER] " + "\033[0m")
+	fmt.Println("------------------------------------------------------------------------------------------------")
+	fmt.Println("EX: go run . something standard")
+	fmt.Println("------------------------------------------------------------------------------------------------")
+	fmt.Println("Option must be in this list :")
+	fmt.Println("{\033[33m standard \033[33m shadow \033[33m thinkertoy\033[0m }")
+	fmt.Println("------------------------------------------------------------------------------------------------")
+}
 func main() {
-	if len(os.Args) > 1 {
+	if len(os.Args) > 2 {
 		Fonts := os.Args[2]
 		inputtext := os.Args[1]
 		Slice_inputtext := strings.Split(inputtext, "\\n")
 		for _, element := range Slice_inputtext {
 			fmt.Println(Show_ascii(Get_ascii_char(element, Fonts)))
 		}
+	} else {
+		perror()
+		return
 	}
 }
 
