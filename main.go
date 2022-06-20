@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -21,10 +22,15 @@ func perror() {
 func main() {
 	if len(os.Args) > 2 {
 		Fonts := os.Args[2]
-		inputtext := os.Args[1]
-		Slice_inputtext := strings.Split(inputtext, "\\n")
-		for _, element := range Slice_inputtext {
-			fmt.Println(Show_ascii(Get_ascii_char(element, Fonts)))
+		if _, err := os.Stat("." + Fonts + ".txt"); errors.Is(err, os.ErrNotExist) {
+			perror()
+			return
+		} else {
+			inputtext := os.Args[1]
+			Slice_inputtext := strings.Split(inputtext, "\\n")
+			for _, element := range Slice_inputtext {
+				fmt.Println(Show_ascii(Get_ascii_char(element, Fonts)))
+			}
 		}
 	} else {
 		perror()
