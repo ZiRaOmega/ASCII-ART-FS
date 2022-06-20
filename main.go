@@ -22,7 +22,7 @@ func perror() {
 func main() {
 	if len(os.Args) > 2 {
 		Fonts := os.Args[2]
-		if _, err := os.Stat("." + Fonts + ".txt"); errors.Is(err, os.ErrNotExist) {
+		if _, err := os.Stat(Fonts + ".txt"); errors.Is(err, os.ErrNotExist) {
 			perror()
 			return
 		} else {
